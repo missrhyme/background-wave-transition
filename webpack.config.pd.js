@@ -8,7 +8,7 @@ module.exports = {
     './src/dev.tsx'
   ],
   output: {
-    path: path.join(__dirname, './'),
+    path: path.join(__dirname, './docs'),
     filename: 'bundle.js',
     publicPath: './'
   },
@@ -21,7 +21,7 @@ module.exports = {
   //   lodash: '_'
   // },
   plugins: [
-    new CleanWebpackPlugin([`${path.join(__dirname, 'dist')}/*.*`]),
+    new CleanWebpackPlugin([`${path.join(__dirname, 'docs')}/*.*`]),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'html/index.html')
     })

@@ -1,2 +1,2 @@
-# React Base Project Example
-- using react, react-router, typescript, redux-zero.
+# Background Wave Transition
+- A background wave transition component with pixi.js.
