@@ -25,7 +25,10 @@ export interface IOptions {
 
 export default class WaveTransition {
   constructor(options: IOptions) {
-    this.options = options;
+    this.options = assign({}, options, {
+      width: document.body.clientWidth,
+      height: window.innerHeight
+    });
     this.index = options.index || 0;
     this.animationOptions = assign({}, options.animationOptions, {
       duration: 2,
