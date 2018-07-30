@@ -6,6 +6,6 @@ import Main from './Main';
 const App = hot(module)(Main);
 
 ReactDOM.render(
-  <App width={1200} height={800} />,
+  <App width={1280} height={800} />,
   document.getElementById('app')
 );

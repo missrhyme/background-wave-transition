@@ -33,7 +33,7 @@ export default class WaveTransition {
       timePulse: 0.02,
       initialAmplitude: 30,
       amplitudePulse: 0.6,
-      alphaPulse: 0.02,
+      alphaPulse: 0.01,
       wavelength: 300,
       waveCount: 3,
       radius: 2000

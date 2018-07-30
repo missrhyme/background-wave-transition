@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import WaveTransition from './WaveTransition';
 
-// import './index.scss';
+import './main.scss';
 
 interface IPropType {
   width: number;
@@ -24,34 +24,29 @@ export default class Test extends Component<IPropType, IStateType> {
     this.initApplication();
   }
 
-  public componentWillUnmount() {
-    // this.destroyApplication();
-  }
-
   private initApplication = () => {
     this.wt = new WaveTransition({
       element: this.dom,
       width: 1280,
       height: 800,
       textures: [
-        'images/kon.jpeg',
-        'images/kon2.png',
-        'images/kon3.jpeg'
+        'https://i.loli.net/2018/07/30/5b5e8b9a44128.jpeg',
+        'https://i.loli.net/2018/07/30/5b5e8b9a44b4b.jpeg',
+        'https://i.loli.net/2018/07/30/5b5e8b9a50b36.png'
       ]
     });
   }
 
-  // private destroyApplication = () => {
-  //   this.app.desdroy();
-  // }
-
   public render() {
     const {children} = this.props;
     return (
-      <div ref={c => { this.dom = c; }}>
+      <div
+        ref={c => { this.dom = c; }}
+        className='container'
+      >
         {children}
-        <button onClick={() => this.wt.changePrev()}>0</button>
-        <button onClick={() => this.wt.changeNext()}>1</button>
+        <button onClick={() => this.wt.changePrev()} className='btn btn-prev'>Prev</button>
+        <button onClick={() => this.wt.changeNext()} className='btn btn-next'>Next</button>
       </div>
     );
   }
