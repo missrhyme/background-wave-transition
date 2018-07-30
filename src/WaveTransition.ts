@@ -20,8 +20,12 @@ export interface IOptions {
   height?: number;
   textures?: string[];
   index?: number;
+  onAnimationStart?: (index: number) => void;
+  onAnimationEnd?: (index: number) => void;
   animationOptions?: IAnimationOptions;
 }
+
+const noop = () => {}; // tslint:disable-line
 
 export default class WaveTransition {
   constructor(options: IOptions) {
@@ -29,7 +33,9 @@ export default class WaveTransition {
       {},
       {
         width: document.body.clientWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
+        onAnimationStart: noop,
+        onAnimationEnd: noop
       },
       options
     );
@@ -146,17 +152,23 @@ export default class WaveTransition {
     return index;
   }
 
-  public changePrev = () => {
+  public destroy = () => {
+    if (this.app) {
+      this.app.destroy();
+    }
+  }
+
+  public goPrev = () => {
     const index = this.checkIndex(this.index  - 1);
-    this.changeTo(index, 'left');
+    this.goto(index, 'left');
   }
 
-  public changeNext = () => {
+  public goNext = () => {
     const index = this.checkIndex(this.index  + 1);
-    this.changeTo(index);
+    this.goto(index);
   }
 
-  public changeTo = (index: number, from?: 'left' | 'right') => {
+  public goto = (index: number, from?: 'left' | 'right') => {
     if (this.isAnimating) {
       return;
     }
@@ -164,7 +176,8 @@ export default class WaveTransition {
     this.ticker = new PIXI.ticker.Ticker();
     this.ticker.stop();
 
-    const {width, height} = this.options;
+    const {width, height, onAnimationStart, onAnimationEnd} = this.options;
+    onAnimationStart(index);
     const {
       duration, initialAmplitude, initialTime,
       amplitudePulse, timePulse, alphaPulse
@@ -200,6 +213,7 @@ export default class WaveTransition {
         this.resizeSprite(this.currentSprite);
         this.currentSprite.alpha = 1;
         this.index = index;
+        onAnimationEnd(index);
         this.isAnimating = false;
       }
     });
