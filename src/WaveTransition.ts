@@ -25,22 +25,30 @@ export interface IOptions {
 
 export default class WaveTransition {
   constructor(options: IOptions) {
-    this.options = assign({}, options, {
-      width: document.body.clientWidth,
-      height: window.innerHeight
-    });
+    this.options = assign(
+      {},
+      {
+        width: document.body.clientWidth,
+        height: window.innerHeight
+      },
+      options
+    );
     this.index = options.index || 0;
-    this.animationOptions = assign({}, options.animationOptions, {
-      duration: 2,
-      initialTime: 1,
-      timePulse: 0.02,
-      initialAmplitude: 30,
-      amplitudePulse: 0.6,
-      alphaPulse: 0.01,
-      wavelength: 300,
-      waveCount: 3,
-      radius: 2000
-    });
+    this.animationOptions = assign(
+      {},
+      {
+        duration: 2,
+        initialTime: 1,
+        timePulse: 0.02,
+        initialAmplitude: 30,
+        amplitudePulse: 0.6,
+        alphaPulse: 0.01,
+        wavelength: 300,
+        waveCount: 3,
+        radius: 2000
+      },
+      options.animationOptions
+    );
     this.init();
   }
 
