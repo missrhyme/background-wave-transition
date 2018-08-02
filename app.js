@@ -9,7 +9,7 @@ const app = new Express();
 const port = 2222;
 
 const compiler = webpack(config);
-app.use('/images', Express.static('images'));
+app.use('/images', Express.static('docs/images'));
 const devMiddleware = webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath});
 app.use(devMiddleware);
 app.use(webpackHotMiddleware(compiler));
