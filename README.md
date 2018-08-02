@@ -18,9 +18,9 @@ const transition = new WaveTransition({
   width: 1280,
   height: 800,
   textures: [
-    '/images/kon-min.jpeg',
-    '/images/kon2-min.png',
-    '/images/kon3-min.jpeg'
+    '/background-wave-transition/images/kon2-min.png',
+    '/background-wave-transition/images/kon2-min.png',
+    '/background-wave-transition/images/kon3-min.jpeg'
   ],
   animationOptions: {}
 });
