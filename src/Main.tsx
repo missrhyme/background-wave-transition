@@ -15,10 +15,10 @@ interface IPropType {
 interface IStateType {
 }
 
-export default class Test extends Component<IPropType, IStateType> {
-  private dom;
-  private app;
-  private wt;
+export default class Example extends Component<IPropType, IStateType> {
+  private dom: HTMLElement;
+  private wt: WaveTransition;
+  private timeout;
 
   public componentDidMount() {
     this.initApplication();
@@ -35,6 +35,25 @@ export default class Test extends Component<IPropType, IStateType> {
         'https://i.loli.net/2018/07/30/5b5e8b9a50b36.png'
       ]
     });
+    this.timeout = setInterval(
+      () => {
+        const r = Math.random() > 0.5;
+        if (r) {
+          this.wt.goNext();
+        }
+        this.wt.goPrev();
+      },
+      3000
+    );
+  }
+
+  private handleChange = (prev: boolean = true) => {
+    if (prev) {
+      this.wt.goPrev();
+    } else {
+      this.wt.goNext();
+    }
+    clearInterval(this.timeout);
   }
 
   public render() {
@@ -45,8 +64,8 @@ export default class Test extends Component<IPropType, IStateType> {
         className='container'
       >
         {children}
-        <button onClick={() => this.wt.changePrev()} className='btn btn-prev'>Prev</button>
-        <button onClick={() => this.wt.changeNext()} className='btn btn-next'>Next</button>
+        <button onClick={() => this.handleChange()} className='btn btn-prev'>Prev</button>
+        <button onClick={() => this.handleChange(false)} className='btn btn-next'>Next</button>
       </div>
     );
   }
