@@ -18,9 +18,9 @@ const transition = new WaveTransition({
   width: 1280,
   height: 800,
   textures: [
-    'https://i.loli.net/2018/07/30/5b5e8b9a44128.jpeg',
-    'https://i.loli.net/2018/07/30/5b5e8b9a44b4b.jpeg',
-    'https://i.loli.net/2018/07/30/5b5e8b9a50b36.png'
+    '/images/kon-min.jpeg',
+    '/images/kon2-min.png',
+    '/images/kon3-min.jpeg'
   ],
   animationOptions: {}
 });
