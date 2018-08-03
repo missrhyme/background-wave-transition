@@ -1,6 +1,6 @@
 {
   "name": "background-wave-transition",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A background wave transition component with pixi.js.",
   "main": "dist/index.js",
   "scripts": {

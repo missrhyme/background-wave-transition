@@ -152,6 +152,14 @@ export default class WaveTransition {
     return index;
   }
 
+  public resize = (width: number, height: number) => {
+    this.options.width = width;
+    this.options.height = height;
+    this.app.renderer.resize(width, height);
+    this.resizeSprite(this.currentSprite);
+    this.resizeSprite(this.nextSprite);
+  }
+
   public destroy = () => {
     if (this.app) {
       this.app.destroy();

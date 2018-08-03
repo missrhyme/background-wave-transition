@@ -37,6 +37,9 @@ const transition = new WaveTransition({
   // go to next
   transition.goNext();
 
+  // resize
+  transition.resize(width: number, height: number);
+
   // destroy
   transition.destroy();
 ```
