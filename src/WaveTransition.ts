@@ -22,6 +22,7 @@ export interface IOptions {
   index?: number;
   onAnimationStart?: (index: number) => void;
   onAnimationEnd?: (index: number) => void;
+  onLoadComplete?: () => void;
   animationOptions?: IAnimationOptions;
 }
 
@@ -35,7 +36,8 @@ export default class WaveTransition {
         width: document.body.clientWidth,
         height: window.innerHeight,
         onAnimationStart: noop,
-        onAnimationEnd: noop
+        onAnimationEnd: noop,
+        onLoadComplete: noop
       },
       options
     );
@@ -71,7 +73,9 @@ export default class WaveTransition {
   public isAnimating = false;
 
   private init = () => {
-    const {width, height, element} = this.options;
+    const {
+      width, height, element, textures, onLoadComplete
+    } = this.options;
     this.app = new PIXI.Application({
       width,
       height,
@@ -79,10 +83,17 @@ export default class WaveTransition {
     });
     element.appendChild(this.app.view);
 
-    this.initTexture();
-    this.initSprite();
-    this.initWaves();
-    this.initContainer();
+    textures.forEach(url => {
+      PIXI.loader.add(url, url);
+    });
+
+    PIXI.loader.load(() => {
+      this.initTexture();
+      this.initSprite();
+      this.initWaves();
+      this.initContainer();
+      onLoadComplete();
+    });
   }
 
   private initTexture = () => {

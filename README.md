@@ -54,6 +54,7 @@ height |  window.innerHeight  |  canvas height
 textures | [] | background image array
 onAnimationStart | () => {} | trigger when animation start
 onAnimationEnd | () => {} | trigger when animation end
+onLoadComplete | () => {} | trigger when textures loaded
 animationOptions.duration | 2 | animation duration
 animationOptions.initialTime | 1 | first shockwave's time
 animationOptions.timePulse | 0.02 | shockwave's time increase per frame

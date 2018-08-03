@@ -33,18 +33,20 @@ export default class Example extends Component<IPropType, IStateType> {
         '/background-wave-transition/images/kon-min.jpeg',
         '/background-wave-transition/images/kon2-min.png',
         '/background-wave-transition/images/kon3-min.jpeg'
-      ]
+      ],
+      onLoadComplete: () => {
+        this.timeout = setInterval(
+          () => {
+            const r = Math.random() > 0.5;
+            if (r) {
+              this.wt.goNext();
+            }
+            this.wt.goPrev();
+          },
+          3000
+        );
+      }
     });
-    this.timeout = setInterval(
-      () => {
-        const r = Math.random() > 0.5;
-        if (r) {
-          this.wt.goNext();
-        }
-        this.wt.goPrev();
-      },
-      3000
-    );
   }
 
   private handleChange = (prev: boolean = true) => {
